@@ -31,11 +31,31 @@ console.log(`Collection is now ${collection}`);
 
 // Create a function called showCollection to take in an array and log each item in the array to the Console
 function showCollection(array) {
+  // First log the amount of items in the array
   console.log(`There are ${array.length} items in this collection.`);
+  // make loop here for logging each album
   for (item of array) {
     console.log(`${item.albumTitle} by ${item.albumArtist}, published in ${item.albumYear}`);
   }
 }
 // testing showCollection
-console.log(`Collection is now ${collection}`);
 console.log(showCollection(collection));
+
+//create function findByArtist which will take in a string, create an array to hold results,
+//loop through the collection and add objects to the created array. and return the array
+function findByArtist(artistName, array) {
+  let results = [];
+  // instead of looping through collection as the instructions request I will loop through an input array for re-usability
+  for (item of array) {
+    if (item.albumArtist === artistName) {
+      results.push(item);
+      //console.log(`${item.albumTitle} was made by ${artistName}`);
+    }
+  }
+  return results;
+}
+// Testing findByArtist
+console.log('Checking collection for albums made by The Beatles', findByArtist('The Beatles', collection));
+console.log('Checking collection for albums made by My Chemical Romance', findByArtist('My Chemical Romance', collection));
+console.log('Checking collection for albums made by Led Zeppelin', findByArtist('Led Zeppelin', collection));
+console.log('Checking collection for albums made by Marvin Gaye', findByArtist('Marvin Gaye', collection));
