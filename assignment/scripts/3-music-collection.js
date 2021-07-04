@@ -30,7 +30,7 @@ console.log('Adding 6 albums to collection',
 console.log(`Collection is now ${collection}`);
 
 // Create a function called showCollection to take in an array and log each item in the array to the Console
-function showCollection(array) {
+function showCollection(array = collection) {
   // First log the amount of items in the array
   console.log(`There are ${array.length} items in this collection.`);
   // make loop here for logging each album
@@ -43,7 +43,7 @@ console.log(showCollection(collection));
 
 //create function findByArtist which will take in a string, create an array to hold results,
 //loop through the collection and add objects to the created array. and return the array
-function findByArtist(artistName, array) {
+function findByArtist(artistName, array = collection) {
   let results = [];
   // instead of looping through collection as the instructions request I will loop through an input array for re-usability
   for (item of array) {
