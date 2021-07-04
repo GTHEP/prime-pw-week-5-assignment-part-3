@@ -32,11 +32,10 @@ console.log(`Collection is now ${collection}`);
 // Create a function called showCollection to take in an array and log each item in the array to the Console
 function showCollection(array) {
   console.log(`There are ${array.length} items in this collection.`);
-  for (item in array) {
+  for (item of array) {
     console.log(`${item.albumTitle} by ${item.albumArtist}, published in ${item.albumYear}`);
   }
 }
 // testing showCollection
 console.log(`Collection is now ${collection}`);
-console.log(collection[0].albumTitle);
-console.log('Testing showCollection(collection)', showCollection(collection));
+console.log(showCollection(collection));
