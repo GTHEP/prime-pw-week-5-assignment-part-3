@@ -59,3 +59,31 @@ console.log('Checking collection for albums made by The Beatles', findByArtist('
 console.log('Checking collection for albums made by My Chemical Romance', findByArtist('My Chemical Romance', collection));
 console.log('Checking collection for albums made by Led Zeppelin', findByArtist('Led Zeppelin', collection));
 console.log('Checking collection for albums made by Marvin Gaye', findByArtist('Marvin Gaye', collection));
+
+//Create a function called search that takes in an object and returns an array showing all items
+//from an array that match all the search criteria. if no object is provided return all albums in collection.
+function search(searchObject="", array = collection) {
+  //create an array to store any potential results
+  let results = [];
+  //Check if searchObject is null/empty, if not, loop through array/collection and add matches to results
+  if (searchObject || searchObject !== "") {
+    for (item of array) {
+      if (searchObject.artist === item.albumArtist && searchObject.year === item.albumYear) {
+        results.push(item);
+      }
+    }
+  } else {
+    for (item of array) {
+      results.push(item);
+    }
+  }
+  //return results
+  return results;
+}
+//testing search
+console.log('Testing search for The Beatles, 1969', search({artist: 'The Beatles', year: 1969}, collection));
+console.log('Testing search for My Chemical Romance, 2010', search({artist: 'My Chemical Romance', year: 2010}, collection));
+console.log('Testing search for Marvin Gaye, 1971...Should be empty list', search({artist: 'Marvin Gaye', year: 1971}, collection));
+console.log('Testing search for The Beatles, 1920...Should be empty list', search({artist: 'Marvin Gaye', year: 1971}, collection));
+console.log('Testing for empty string provided for searchObject...Should show entire collection', search("", collection));
+console.log('Testing for no searchObject provided...Should show entire collection', search());
