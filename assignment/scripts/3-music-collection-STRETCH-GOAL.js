@@ -4,7 +4,7 @@ console.log('***** Music Collection *****')
 let collection = [];
 
 //Format seconds to show up properly in tracklist
-function secondsCalc(num, places) {
+function secondsFormat(num, places) {
   var zero = places - num.toString().length + 1;
   return Array(+(zero > 0 && zero)).join("0") + num;
 }
@@ -16,9 +16,9 @@ let tracks1 = [
   ['All You Need is Love', 3, 51]
 ]
 let tracks2 = [
-  ['Welcome to the Black Parade', 6, secondsCalc(0, 2)],
+  ['Welcome to the Black Parade', 6, secondsFormat(0, 2)],
   ['Helena', 2, 45],
-  ['Teenagers', 3, secondsCalc(5, 2)]
+  ['Teenagers', 3, secondsFormat(5, 2)]
 ]
 
 // create a function that takes in a title, artist, and year published and creates
@@ -111,10 +111,13 @@ function search(searchObject="", array = collection) {
   //create an array to store any potential results
   let results = [];
   //Check if searchObject is null/empty, if not, loop through array/collection and add matches to results
+  // Adding in a search by trackName - will return album
   if (searchObject || searchObject !== "") {
     for (item of array) {
       if (searchObject.artist === item.albumArtist && searchObject.year === item.albumYear) {
         results.push(item);
+      } else if (searchObject.trackName === item.albumTracks[0][0] || searchObject.trackName === item.albumTracks[1][0] || searchObject.trackName === item.albumTracks[2][0]){
+        results.push(item)
       }
     }
   } else {
@@ -132,5 +135,9 @@ console.log('Testing search for Marvin Gaye, 1971...Should be empty list', searc
 console.log('Testing search for The Beatles, 1920...Should be empty list', search({artist: 'Marvin Gaye', year: 1971}, collection));
 console.log('Testing for empty string provided for searchObject...Should show entire collection', search("", collection));
 console.log('Testing for no searchObject provided...Should show entire collection', search());
+
+//testing search by trackName
+console.log('Testing search for track name: All You Need is Love', search({trackName: 'All You Need is Love'}, collection));
+console.log('Testing search for track name: Welcome to the Black Parade', search({trackName: 'Welcome to the Black Parade'}, collection));
 
 //
