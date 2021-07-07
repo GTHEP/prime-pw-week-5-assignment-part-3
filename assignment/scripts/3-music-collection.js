@@ -3,7 +3,7 @@ console.log('***** Music Collection *****')
 // create an empty array named collection
 let collection = [];
 
-//Format seconds to show up properly in tracklist
+//Format seconds to show up properly in showCollection
 function secondsFormat(num, places) {
   var zero = places - num.toString().length + 1;
   return Array(+(zero > 0 && zero)).join("0") + num;
