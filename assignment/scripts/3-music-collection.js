@@ -16,7 +16,6 @@ function addToCollection(title, artist, yearPublished) {
   // return the new object
   return newObject;
 }
-
 //test Collection
 console.log(`Collection is currently: ${collection}`);
 console.log('Adding 6 albums to collection',
@@ -28,6 +27,28 @@ console.log('Adding 6 albums to collection',
   addToCollection('Led Zeppelin', 'Led Zeppelin', 1969),
 );
 console.log(`Collection is now ${collection}`);
+
+// ***THIS SECTION WAS AN EXPERIMENT BUT IF YOU HAVE ANY INPUT IF IT SHOULD HAVE BEEN DONE THIS WAY I WOULD LOVE TO HEAR***
+// function addToCollection (title, artist, yearPublished) {
+//   const newObj = {};
+//   newObj.title = title;
+//   newObj.artist = artist;
+//   newObj.yearPublished = yearPublished;
+//   collection.push(newObj);
+//   return newObj;
+// }
+//
+// //testing addColl
+// console.log(`Collection is: ${collection}`);
+// console.log('TESTING addToCollection --- Adding 6 albums to collection',
+//   addToCollection('Yellow Submarine', 'The Beatles', 1969),
+//   addToCollection('The Black Parade', 'My Chemical Romance', 2006),
+//   addToCollection('Danger Days', 'My Chemical Romance', 2010),
+//   addToCollection('Rubber Soul', 'The Beatles', 1965),
+//   addToCollection('Let it Bleed', 'The Rolling Stones', 1969),
+//   addToCollection('Led Zeppelin', 'Led Zeppelin', 1969),
+// );
+// console.log(`Collection is now: ${collection}`);
 
 // Create a function called showCollection to take in an array and log each item in the array to the Console
 function showCollection(array = collection) {
@@ -87,3 +108,5 @@ console.log('Testing search for Marvin Gaye, 1971...Should be empty list', searc
 console.log('Testing search for The Beatles, 1920...Should be empty list', search({artist: 'Marvin Gaye', year: 1971}, collection));
 console.log('Testing for empty string provided for searchObject...Should show entire collection', search("", collection));
 console.log('Testing for no searchObject provided...Should show entire collection', search());
+
+//
