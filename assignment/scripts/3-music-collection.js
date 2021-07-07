@@ -3,13 +3,32 @@ console.log('***** Music Collection *****')
 // create an empty array named collection
 let collection = [];
 
+//Format seconds to show up properly in tracklist
+function secondsFormat(num, places) {
+  var zero = places - num.toString().length + 1;
+  return Array(+(zero > 0 && zero)).join("0") + num;
+}
+
+// Pre-define tracks
+let tracks1 = [
+  ['In My Life', 2, 26],
+  ['Come Together', 3, 14],
+  ['All You Need is Love', 3, 51]
+]
+let tracks2 = [
+  ['Welcome to the Black Parade', 6, secondsFormat(0, 2)],
+  ['Helena', 2, 45],
+  ['Teenagers', 3, secondsFormat(5, 2)]
+]
+
 // create a function that takes in a title, artist, and year published and creates
 // a new object with those parameters
-function addToCollection(title, artist, yearPublished) {
+function addToCollection(title, artist, yearPublished, trackList = tracks1) {
   const newObject = {
     albumTitle: title,
     albumArtist: artist,
-    albumYear: yearPublished
+    albumYear: yearPublished,
+    albumTracks: trackList
   }
   // add the created object to the end of the collection array
   collection.push(newObject);
@@ -19,8 +38,8 @@ function addToCollection(title, artist, yearPublished) {
 //test Collection
 console.log(`Collection is currently: ${collection}`);
 console.log('Adding 6 albums to collection',
-  addToCollection('Yellow Submarine', 'The Beatles', 1969),
-  addToCollection('The Black Parade', 'My Chemical Romance', 2006),
+  addToCollection('Yellow Submarine', 'The Beatles', 1969, tracks1),
+  addToCollection('The Black Parade', 'My Chemical Romance', 2006, tracks2),
   addToCollection('Danger Days', 'My Chemical Romance', 2010),
   addToCollection('Rubber Soul', 'The Beatles', 1965),
   addToCollection('Let it Bleed', 'The Rolling Stones', 1969),
@@ -55,10 +74,13 @@ console.log(`Collection is now ${collection}`);
 // Create a function called showCollection to take in an array and log each item in the array to the Console
 function showCollection(array = collection) {
   // First log the amount of items in the array
-  console.log(`There are ${array.length} items in this collection.`);
+  console.log(`There are ${array.length} albums in this collection.`);
   // make loop here for logging each album
   for (item of array) {
-    console.log(`${item.albumTitle} by ${item.albumArtist}, published in ${item.albumYear}`);
+    console.log(`${item.albumTitle} by ${item.albumArtist}, published in ${item.albumYear}\n
+      1. ${item.albumTracks[0][0]}: ${item.albumTracks[0][1]}:${item.albumTracks[0][2]}\n
+      2. ${item.albumTracks[1][0]}: ${item.albumTracks[1][1]}:${item.albumTracks[1][2]}\n
+      3. ${item.albumTracks[2][0]}: ${item.albumTracks[2][1]}:${item.albumTracks[2][2]}\n`);
   }
 }
 // testing showCollection
@@ -89,10 +111,13 @@ function search(searchObject="", array = collection) {
   //create an array to store any potential results
   let results = [];
   //Check if searchObject is null/empty, if not, loop through array/collection and add matches to results
+  // Adding in a search by trackName - will return album
   if (searchObject || searchObject !== "") {
     for (item of array) {
       if (searchObject.artist === item.albumArtist && searchObject.year === item.albumYear) {
         results.push(item);
+      } else if (searchObject.trackName === item.albumTracks[0][0] || searchObject.trackName === item.albumTracks[1][0] || searchObject.trackName === item.albumTracks[2][0]){
+        results.push(item)
       }
     }
   } else {
@@ -111,4 +136,6 @@ console.log('Testing search for The Beatles, 1920...Should be empty list', searc
 console.log('Testing for empty string provided for searchObject...Should show entire collection', search("", collection));
 console.log('Testing for no searchObject provided...Should show entire collection', search());
 
-//
+//testing search by trackName
+console.log('Testing search for track name: All You Need is Love', search({trackName: 'All You Need is Love'}, collection));
+console.log('Testing search for track name: Welcome to the Black Parade', search({trackName: 'Welcome to the Black Parade'}, collection));

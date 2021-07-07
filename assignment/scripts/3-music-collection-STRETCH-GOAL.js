@@ -139,5 +139,3 @@ console.log('Testing for no searchObject provided...Should show entire collectio
 //testing search by trackName
 console.log('Testing search for track name: All You Need is Love', search({trackName: 'All You Need is Love'}, collection));
 console.log('Testing search for track name: Welcome to the Black Parade', search({trackName: 'Welcome to the Black Parade'}, collection));
-
-//
