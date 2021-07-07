@@ -28,7 +28,9 @@ console.log('Adding 6 albums to collection',
 );
 console.log(`Collection is now ${collection}`);
 
-// ***THIS SECTION WAS AN EXPERIMENT BUT IF YOU HAVE ANY INPUT IF IT SHOULD HAVE BEEN DONE THIS WAY I WOULD LOVE TO HEAR***
+// ***THIS SECTION WAS AN EXPERIMENT BUT IF YOU HAVE ANY INPUT IF IT SHOULD HAVE BEEN DONE THIS WAY I WOULD LOVE TO HEAR,
+// UNFORTUNATELY I'M OUT OF TOWN FOR THE REST OF THE WEEK SO I DON'T HAVE TIME TO REWRITE THE REST OF MY CODE***
+
 // function addToCollection (title, artist, yearPublished) {
 //   const newObj = {};
 //   newObj.title = title;
